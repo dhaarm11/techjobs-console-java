@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
+
 /**
  * Created by LaunchCode
  */
@@ -61,7 +62,7 @@ public class TechJobs {
                 String searchTerm = in.nextLine();
 
                 if (searchField.equals("all")) {
-                    System.out.println("Search all fields not yet implemented.");
+                    printJobs(JobData.findByValue(searchTerm));
                 } else {
                     printJobs(JobData.findByColumnAndValue(searchField, searchTerm));
                 }
@@ -110,7 +111,30 @@ public class TechJobs {
 
     // Print a list of jobs
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
+        if (someJobs.size()==0) {
+            System.out.print("Invalid choice. Try again.");
+            System.out.print("\n");
+        }
+        for(int i = 0; i < someJobs.size(); i++) {
+            System.out.print("\n");
+            System.out.print("*****");
+            System.out.print("\n");
+            HashMap<String, String> currentjob = someJobs.get(i);
 
-        System.out.println("printJobs is not implemented yet");
+            for(String j : currentjob.keySet()) {
+                System.out.print(j + ": " + currentjob.get(j));
+                System.out.print("\n");
+            }
+            System.out.print("*****");
+            System.out.print("\n");
+        }
+
+        //*****
+        //position type: Data Scientist / Business Intelligence
+        //name: Sr. IT Analyst (Data/BI)
+        //employer: Bull Moose Industries
+        //location: Saint Louis
+        //core competency: Statistical Analysis
+        //*****
     }
 }
